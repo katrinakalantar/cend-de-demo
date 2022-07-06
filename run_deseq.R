@@ -88,6 +88,11 @@ write.csv(res_sc2_v_no_virus_ordered, "results/part3.res_sc2_v_no_virus_ordered.
 
 head(res_sc2_v_no_virus_ordered, 10) # show the top differentially expressed genes
 
+# write the gene names and log2FC values to .csv for input to WebGestalt enrichment tool (http://www.webgestalt.org/)
+write.table(res_sc2_v_no_virus_ordered[res_sc2_v_no_virus_ordered$padj < .01, c("genenames", "log2FoldChange")], 
+            "results/part3.webgestalt_input.txt", 
+            sep = '\t', quote = FALSE, row.names = FALSE, col.names = FALSE)
+
 
 # Section 3.2 - Plot a heatmap of the results for comparison of ** SC2 v. no virus **
 
@@ -136,6 +141,11 @@ res_sc2_v_other_virus_ordered$genenames <- gene_annot_tsv[rownames(res_sc2_v_oth
 write.csv(res_sc2_v_other_virus_ordered, "results/part4.res_sc2_v_other_virus_ordered.results.csv")
 
 head(res_sc2_v_other_virus_ordered, 10) # show the top differentially expressed genes
+
+# write the gene names and log2FC values to .csv for input to WebGestalt enrichment tool (http://www.webgestalt.org/)
+write.table(res_sc2_v_other_virus_ordered[res_sc2_v_other_virus_ordered$padj < .01, c("genenames", "log2FoldChange")], 
+            "results/part4.webgestalt_input.txt", 
+            sep = '\t', quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 
 # Plot Heatmap
